@@ -1,7 +1,7 @@
 number = ''
 
 while not number.isdigit():
-    number = input('Введіть трьохзначне число: ')
+    number = input('Введіть трьохзначне ціле число: ')
     if len(number) != 3:
         number = ''
 
