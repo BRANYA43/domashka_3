@@ -1,8 +1,7 @@
 list_ten = list(range(10, 51, 10))
-some_list = []
+list_reversible = []
 
 for i in range(len(list_ten)):
-    print(i)
-    some_list.append(list_ten[len(list_ten) - i - 1])
+    list_reversible.append(list_ten[-1-i])
 
-print(some_list)
+print(list_reversible)
