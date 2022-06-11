@@ -25,4 +25,4 @@ while WORKING:
 
     except RecursionError:
         print('Дуже велике число, кампуктер не справляеться.\n'
-              f'Введіть число менше {getrecursionlimit()-1}.')
+              f'Введіть число менше {getrecursionlimit() - 1}.')
