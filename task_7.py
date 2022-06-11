@@ -1,3 +1,5 @@
+from sys import getrecursionlimit
+
 WORKING = True
 
 
@@ -23,4 +25,4 @@ while WORKING:
 
     except RecursionError:
         print('Дуже велике число, кампуктер не справляеться.\n'
-              'Введіть число не більше 998.')
+              f'Введіть число менше {getrecursionlimit()-1}.')
