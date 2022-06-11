@@ -2,16 +2,13 @@ from random import randint
 
 count = 3
 number = 0
-
 guess_number = randint(1, 10)
-print(guess_number)
 
 
 def get_input_number(message: str):
     ret = ''
     while not ret.isdigit():
         ret = input(message)
-
     return int(ret)
 
 
