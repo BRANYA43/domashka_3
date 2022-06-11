@@ -1,3 +1,6 @@
+WORKING = True
+
+
 def get_integral(number: int):
     if number == 1:
         return 1
@@ -5,6 +8,19 @@ def get_integral(number: int):
         return number * get_integral(number - 1)
 
 
-number = int(input('Введіть число: '))
+def get_input_number(message: str):
+    ret = ''
+    while not ret.isdigit():
+        ret = input(message)
+    return int(ret)
 
-print(get_integral(number))
+
+while WORKING:
+    try:
+        number = get_input_number('Введіть ціле число: ')
+        print(get_integral(number))
+        WORKING = False
+
+    except RecursionError:
+        print('Дуже велике число, кампуктер не справляеться.\n'
+              'Введіть число не більше 998.')
