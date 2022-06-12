@@ -1,14 +1,14 @@
 X_AXIS = tuple(range(1, 9))
-Y_AXIS = tuple(chr(elem) for elem in range(ord('A'), ord('A') + 9))
+Y_AXIS = tuple(chr(elem) for elem in range(ord('A'), ord('A') + 8))
 DICT_DIRECTION  = {'up': '1', 'down': '2', 'left': '3', 'right': '4'}
 
-knight = {'x': X_AXIS[4], 'y': Y_AXIS[4]}
-save_start_cords = knight
+knight = {'x': X_AXIS[0], 'y': Y_AXIS[0]}
+save_knight = knight.copy()
 
-all_possible_moves = []
+all_possible_move = []
 
 
-def set_cord_move(direction: str, piece: dict, distance_move):
+def set_cord_move(direction: str, piece: dict, distance_move: int):
     global DICT_DIRECTION, X_AXIS, Y_AXIS
     x = X_AXIS.index(piece['x'])
     y = Y_AXIS.index(piece['y'])
@@ -17,19 +17,14 @@ def set_cord_move(direction: str, piece: dict, distance_move):
         piece['y'] = Y_AXIS[y - distance_move]
     elif direction == DICT_DIRECTION['down']:
         piece['y'] = Y_AXIS[y + distance_move]
+
     elif direction == DICT_DIRECTION['left']:
         piece['x'] = X_AXIS[x - distance_move]
     elif direction == DICT_DIRECTION['right']:
         piece['x'] = X_AXIS[x + distance_move]
 
 
-def get_cords_move(direction_1: str, piece: dict):
-    set_cord_move(direction_1, piece, distance_move=2)
-    cords = (piece['x'], piece['y'])
-    return cords
-
-
-def get_two_next_direction(direction: str, index: int):
+def get_two_next_direction(direction: str):
     directions_move = []
     if direction == DICT_DIRECTION['up'] or direction == DICT_DIRECTION['down']:
         directions_move.append(DICT_DIRECTION['left'])
@@ -39,7 +34,16 @@ def get_two_next_direction(direction: str, index: int):
         directions_move.append(DICT_DIRECTION['up'])
         directions_move.append(DICT_DIRECTION['down'])
 
-    return directions_move[index]
+    return directions_move
 
-for key in DICT_DIRECTION.keys():
-    pass
+
+for key in DICT_DIRECTION:
+    direction_1 = DICT_DIRECTION[key]
+    two_next_direction = get_two_next_direction(direction_1)
+    for direction_2 in two_next_direction:
+        set_cord_move(direction_1, knight, distance_move=2)
+        set_cord_move(direction_2, knight, distance_move=1)
+        all_possible_move.append((knight['x'], knight['y']))
+        knight = save_knight.copy()
+print(all_possible_move)
+print(save_knight)
