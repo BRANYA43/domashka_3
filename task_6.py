@@ -1,11 +1,30 @@
+from random import randint
+
 X_AXIS = tuple(range(1, 9))
 Y_AXIS = tuple(chr(elem) for elem in range(ord('A'), ord('A') + 8))
 DICT_DIRECTION = {'up': '1', 'down': '2', 'left': '3', 'right': '4'}
 
-knight = {'x': X_AXIS[4], 'y': Y_AXIS[0]}
+x_rand = randint(0, len(X_AXIS) - 1)
+y_rand = randint(0, len(Y_AXIS) - 1)
+
+knight = {'x': X_AXIS[x_rand], 'y': Y_AXIS[y_rand]}
 save_knight = knight.copy()
 
-all_possible_move = []
+all_possible_moves = []
+cords_moves = []
+
+
+def get_two_random_cords(cords_moves):
+    for i in range(2):
+        x = randint(0, len(X_AXIS) - 1)
+        y = randint(0, len(Y_AXIS) - 1)
+        cords_moves.append((X_AXIS[x], Y_AXIS[y]))
+
+
+def add_cords(list_for_cords: list, piece: dict, save_piece: dict):
+    if X_AXIS.index(save_piece['x']) - 3 < X_AXIS.index(piece['x']) < X_AXIS.index(save_piece['x']) + 3 \
+            and Y_AXIS.index(save_piece['y']) - 3 < Y_AXIS.index(piece['y']) < Y_AXIS.index(save_piece['y']) + 3:
+        list_for_cords.append((piece['x'], piece['y']))
 
 
 def set_cord_move(direction: str, piece: dict, distance_move: int):
@@ -44,14 +63,19 @@ for key in DICT_DIRECTION:
         try:
             set_cord_move(direction_1, knight, distance_move=2)
             set_cord_move(direction_2, knight, distance_move=1)
-            if X_AXIS.index(save_knight['x']) - 3 < X_AXIS.index(knight['x']) < X_AXIS.index(save_knight['x']) + 3 \
-                and Y_AXIS.index(save_knight['y']) - 3 < Y_AXIS.index(knight['y']) < Y_AXIS.index(save_knight['y']) + 3:
-
-                all_possible_move.append((knight['x'], knight['y']))
+            add_cords(all_possible_moves, knight, save_knight)
         except IndexError:
             pass
 
-
         knight = save_knight.copy()
-print(all_possible_move)
+
+get_two_random_cords(cords_moves)
+
+for i in cords_moves:
+    for j in all_possible_moves:
+        if i == j:
+            print('+')
+
+print(all_possible_moves)
 print(save_knight)
+print(cords_moves)
