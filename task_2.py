@@ -8,7 +8,7 @@ number = ''
 while WORKING:
     number = input('Введіть дрібне число: ')
     try:
-        if float(number) and number[-1] == '.':
+        if float(number) and not number.isdigit():
             if number[-1] == '.':
                 number += '0'
             WORKING = False
