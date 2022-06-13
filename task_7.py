@@ -1,6 +1,6 @@
 from sys import getrecursionlimit
 
-WORKING = True
+working = True
 
 
 def get_integral(number: int):
@@ -17,11 +17,11 @@ def get_input_number(message: str):
     return int(ret)
 
 
-while WORKING:
+while working:
     try:
         number = get_input_number('Введіть ціле число: ')
         print(get_integral(number))
-        WORKING = False
+        working = False
 
     except RecursionError:
         print('Дуже велике число, кампуктер не справляеться.\n'
