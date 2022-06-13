@@ -1,17 +1,17 @@
-WORKING = True
+working = True
 
 integer_part = ''
 fractional_part = ''
 number = ''
 
 
-while WORKING:
+while working:
     number = input('Введіть дрібне число: ')
     try:
         if float(number) and not number.isdigit():
             if number[-1] == '.':
                 number += '0'
-            WORKING = False
+            working = False
     except ValueError:
         print(f'Ви ввели помилкові данні.')
 
