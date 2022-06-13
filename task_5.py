@@ -18,20 +18,9 @@ while count > 0:
 
         if guess_number == number and count != 0:
             print(f'Вітаємо, Ви вгадали!')
-            break
+            count = 0
         else:
             print('Ви не вгадали.')
-            print('*' * 20)
             count -= 1
-
-        if count == 0:
-            print('У вас не залишилось спроб.')
-        elif count == 1:
-            print(f'Залишлось {count} спроба.')
-        elif 2 <= count <= 4:
-            print(f'Залишилось {count} спроби.')
-        elif count >= 5:
-            print(f'Залишилось {count} спроб.')
     else:
         print('Ви ввели число вне діпазону.')
-        print('*' * 20)
