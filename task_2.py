@@ -15,6 +15,6 @@ while working:
     except ValueError:
         print(f'Ви ввели помилкові данні.')
 
-integer_part, fractional_part = number.split('.')
-print(f'Ціла частина числа: {integer_part}\n'
-      f'Дрібна частина числа: {fractional_part}')
+_, fractional_part = number.split('.')
+print(f'Дрібна частина числа: {fractional_part}\n'
+      f'Перша цифра дрібної частини: {fractional_part[0]}')
